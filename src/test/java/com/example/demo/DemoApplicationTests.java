@@ -8,6 +8,9 @@ class DemoApplicationTests {
 
 	@Test
 	void contextLoads() {
+		String response = DemoApplication.hello("sharan");
+		System.out.println("Response of the name " + response);
+		System.out.println("Response of the name " + response.equals("Hello Sharan!"));
 	}
 
 }
