@@ -1,0 +1,52 @@
+pipeline{
+    agent any
+
+    
+    environment{
+        GITHUB_ACCOUNT = 'sharu-91'
+
+    }
+    
+    stages{
+        stage('HelloTest'){
+            steps{
+            echo 'Helllo World'
+            }
+        }
+    
+        stage('Build'){
+            
+            steps{
+            git 'https://github.com/sharu-91/DemoApplication.git'
+            sh "mvn clean compile"
+            }
+        }
+        stage('Test'){
+            
+            steps{
+            sh "mvn test-compile"
+            }
+        }
+        stage('Build and launch'){
+            
+            steps{
+                sh 'cd /var/lib/jenkins/workspace/testpipeline1 && DemoApplication &'
+            }
+        }
+        stage('Run'){
+            
+            steps{
+                sh "./mvnw spring-boot:run"
+            }
+        }
+        stage('Run'){
+            
+            steps{
+                script{
+                image = docker.build("sharus91/demodpplicationspring22")
+                }
+            }
+        }
+    }
+    
+}
