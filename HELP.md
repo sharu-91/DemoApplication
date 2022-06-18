@@ -52,3 +52,12 @@ Then, you can run the app as follows:
 ```
 $ target/demo
 ```
+#to change the port refer application.properties file
+
+server.port=8888
+server.contextPath=/DemoApplication
+
+#to launch this application in your browser use the command 
+
+./mvnw spring-boot:run
+
